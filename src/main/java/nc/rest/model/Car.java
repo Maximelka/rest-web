@@ -7,19 +7,19 @@ import lombok.Setter;
 @Data
 public class Car {
 
-    @Setter
     @Getter
+    @Setter
     private int id;
 
-    @Setter
     @Getter
+    @Setter
     private String name;
 
-    @Setter
     @Getter
+    @Setter
     private String marka;
 
-    @Setter
     @Getter
+    @Setter
     private int year;
 }
