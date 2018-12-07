@@ -4,8 +4,11 @@ import nc.rest.dao.CarDao;
 import nc.rest.exception.CarNotFoundException;
 import nc.rest.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CarServiceImpl implements CarService {
+
     private final CarDao carDao;
 
     @Autowired
