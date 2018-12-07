@@ -27,12 +27,31 @@ public class CarController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProfile(@Valid @RequestBody CarRequest request) {
+    public void createCar(@Valid @RequestBody CarRequest request) {
         carService.createCar(
                 request.getName(),
                 request.getMarka(),
                 request.getYear()
         );
+    }
+
+    @PutMapping(value = "/{carId:\\d+}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateCar(
+            @Valid @RequestBody CarRequest request,
+            @PathVariable int carId
+    ) {
+        carService.updateCar(
+                request.getName(),
+                request.getMarka(),
+                request.getYear(),
+                carId
+        );
+    }
+
+    @DeleteMapping(value = "/{carId:\\d+}")
+    public void deleteProfile(@PathVariable int carId) {
+        carService.deleteCar(carId);
     }
 }
 

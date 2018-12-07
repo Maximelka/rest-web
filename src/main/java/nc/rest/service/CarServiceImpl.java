@@ -26,4 +26,18 @@ public class CarServiceImpl implements CarService {
     public void createCar(String name, String marka, int year) {
         carDao.insertCar(name,marka,year);
     }
+
+    @Override
+    public void updateCar(String name, String marka, int year, int id) {
+        Car car = carDao.getCarById(id)
+                .orElseThrow(() -> new CarNotFoundException(id));
+        carDao.updateCar(name, marka, year, car.getId());
+    }
+
+    @Override
+    public void deleteCar(int id) {
+        Car profile = carDao.getCarById(id)
+                .orElseThrow(() -> new CarNotFoundException(id));
+        carDao.deleteCarById(profile.getId());
+    }
 }

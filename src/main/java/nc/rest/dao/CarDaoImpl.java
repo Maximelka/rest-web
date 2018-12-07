@@ -18,6 +18,12 @@ public class CarDaoImpl implements CarDao {
     private static final String SQL_INSERT_CAR=
             "insert into cars (name, marka, year) values (:name, :marka, :year)";
 
+    private static final String SQL_UPDATE_CAR =
+            "update cars set name = :name, marka = :marka, year = :year where id = :id";
+
+    private static final String SQL_DELETE_PROFILE =
+            "delete from cars where id = :id";
+
     private final CarMapper carMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -54,5 +60,22 @@ public class CarDaoImpl implements CarDao {
         params.addValue("marka", marka);
         params.addValue("year", year);
         jdbcTemplate.update(SQL_INSERT_CAR, params);
+    }
+
+    @Override
+    public void updateCar(String name, String marka, int year, int id) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("name", name);
+        params.addValue("marka", marka);
+        params.addValue("year", year);
+        params.addValue("id", id);
+        jdbcTemplate.update(SQL_UPDATE_CAR, params);
+    }
+
+    @Override
+    public void deleteCarById(int id) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("id", id);
+        jdbcTemplate.update(SQL_DELETE_PROFILE, params);
     }
 }
